@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>翻页计时器</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        h1 {
+            font-size: 48px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h2>我和鲍凌翔在一起已经</h2>
+    <h1 id="countdown"></h1>
+    <button onclick="window.close()">退出</button>
+
+    <script>
+        function updateCountdown() {
+            const targetDate = new Date('2024-04-04T00:00:00');
+            const now = new Date();
+            const diff = targetDate - now;
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById("countdown").innerHTML =
+                `${days} 天 ${hours.toString().padStart(2, '0')} 时:${minutes.toString().padStart(2, '0')} 分:${seconds.toString().padStart(2, '0')} 秒`;
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>翻页计时器</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background-image: url('your-image-path.jpg'); /* 替换为自定义背景图片路径 */
+            background-size: cover;
+            background-position: center;
+        }
+        .countdown-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px; /* 设置时间块之间的间距 */
+        }
+        .time-box {
+            background-color: #8cc63f; /* 设置绿色背景 */
+            border-radius: 15px; /* 圆角 */
+            padding: 20px 30px; /* 增加内边距 */
+            text-align: center;
+            color: white;
+            font-size: 48px; /* 设置倒计时数字的字体大小 */
+            font-weight: bold;
+        }
+        .label {
+            margin-top: 10px;
+            color: #cccccc;
+            font-size: 16px; /* 设置标签字体大小 */
+        }
+        .colon {
+            font-size: 48px; /* 设置冒号的大小 */
+            color: white;
+        }
+        .heart {
+            font-size: 80px;
+            color: red;
+            margin-top: 20px;
+        }
+        h1 {
+            font-size: 100px bold;
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+    <h1>我和鲍凌翔在一起已经</h1>
+    <div class="countdown-container">
+        <div>
+            <div class="time-box" id="days"></div>
+        </div>
+        <div class="colon">:</div>
+        <div>
+            <div class="time-box" id="hours"></div>
+        </div>
+        <div class="colon">:</div>
+        <div>
+            <div class="time-box" id="minutes"></div>
+        </div>
+        <div class="colon">:</div>
+        <div>
+            <div class="time-box" id="seconds"></div>
+        </div>
+    </div>
+
+    <div class="heart">❤️</div> <!-- 红色爱心符号替代退出按钮 -->
+
+    <script>
+        function updateCountdown() {
+            const targetDate = new Date('2024-04-04T00:00:00');
+            const now = new Date();
+            const diff =  now - targetDate;
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById("days").textContent = days.toString().padStart(2, '0') + "天";
+            document.getElementById("hours").textContent = hours.toString().padStart(2, '0') + "时";
+            document.getElementById("minutes").textContent = minutes.toString().padStart(2, '0') + "分";
+            document.getElementById("seconds").textContent = seconds.toString().padStart(2, '0') + "秒";
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+</body>
+</html>
